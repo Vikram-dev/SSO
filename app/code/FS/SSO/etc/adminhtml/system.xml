@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+
+	<system>
+        <tab id="Futuresoft" translate="label" sortOrder="100">
+            <label><![CDATA[<img src="http://portal.futuresoftindia.com:7880/Content/images/fs_logo.png" alt="Futuresoft" height="15" style="vertical-align:middle;"/>]]></label>
+        </tab>
+        <section id="sso" translate="label" type="text" sortOrder="320" showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>Single Sign On</label>
+            <tab>Futuresoft</tab>
+            <resource>FS_SSO::sso_configuration</resource>
+            <group id="general" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="0" showInStore="0">
+                <label>Configuration</label>
+                <field id="api_url" translate="label comment" type="text" sortOrder="1" showInDefault="1"
+                       showInWebsite="1" showInStore="1">
+                    <label>API Basic URL</label>
+                </field>
+				<field id="api_client" translate="label comment" type="text" sortOrder="1" showInDefault="1"
+                       showInWebsite="1" showInStore="1">
+                    <label>Client Id</label>
+                </field>
+				<field id="api_secret" translate="label comment" type="text" sortOrder="1" showInDefault="1"
+                       showInWebsite="1" showInStore="1">
+                    <label>Secret Key</label>
+                </field>
+				<field id="api_phrase" translate="label comment" type="text" sortOrder="1" showInDefault="1"
+                       showInWebsite="1" showInStore="1">
+                    <label>Pass Phrase</label>
+                </field>
+			</group>
+				
+		</section>
+    </system>
+</config>
