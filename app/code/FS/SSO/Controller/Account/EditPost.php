@@ -192,11 +192,14 @@ class EditPost extends \Magento\Customer\Controller\AbstractAccount
 				$token = $this->session->getToken();
 				$response = $this->ssoHelper->updateUser($token,$custData);
 				//echo "Response = ".$response; die;
-				if($response!='success'){
-					$redirectUrl = $this->_buildUrl('*/*/index');
-					$this->messageManager->addException($e, __('We can\'t save the address due to Api is down.'));
+				if(strtolower(trim($response))!='success'){ 
+					//$redirectUrl = $this->_buildUrl('customer/account/edit/');
+					//$this->messageManager->addException($e, __('We can\'t save the address due to Api is down.'));
+					$this->messageManager->addError('We can\'t save the address due to Api is down.');
+					$output = ['success' => false,'message' => "We can't save the address due to Api is down."]; 
+					return $this->getResponse()->representJson($this->_objectManager->get('Magento\Framework\Json\Helper\Data')->jsonEncode($output));
 				}
-			
+				$isPasswordChanged = false;
                 $this->customerRepository->save($customerCandidateDataObject);
                 $this->getEmailNotification()->credentialsChanged(
                     $customerCandidateDataObject,

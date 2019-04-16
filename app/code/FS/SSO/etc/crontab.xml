@@ -3,6 +3,9 @@
 	<group id="custom_group">		
 		<job name="customersync" instance="FS\SSO\Cron\CustomerSync" method="execute">
 			<schedule>* */23 * * *</schedule>
+		</job>	
+		<job name="customerdelete" instance="FS\SSO\Cron\CustomerDelete" method="execute">
+			<schedule>*/50 */23 * * *</schedule>
 		</job>
 	</group>
 </config>

@@ -11,7 +11,7 @@ use Magento\Framework\App\Action\Context;
 use Magento\Framework\View\Result\PageFactory;
 use \Magento\Store\Model\StoreManagerInterface;
 
-class Login extends \Magento\Customer\Controller\AbstractAccount
+class Login extends \Magento\Framework\App\Action\Action
 {
     /**
      * @var Session
@@ -125,6 +125,11 @@ class Login extends \Magento\Customer\Controller\AbstractAccount
 			
 			$redirect=$this->_urlInterface->getUrl('customer/account/login/'); 
 			$phrase = $this->_scopeConfig->getValue("sso/general/api_phrase"); 
+			
+			/* if($this->getRequest()->getParam('error_description')){
+				echo $this->getRequest()->getParam('error_description'); die;
+			} */
+			
 			if($this->getRequest()->getParam('code')){
 				if($this->getRequest()->getParam('state')!==$phrase){
 					//mail();
@@ -182,12 +187,12 @@ class Login extends \Magento\Customer\Controller\AbstractAccount
 									$metadata->setPath('/');
 									$this->getCookieManager()->deleteCookie('mage-cache-sessid', $metadata);
 								}
-								$resultRedirect->setPath('/customer/account/edit');
+								$resultRedirect->setUrl($this->_urlInterface->getUrl('customer/account/edit'));
 								return $resultRedirect;
 								
-								
-								$this->session->login($userResp['email']);
-								$this->session->isLoggedIn(true);
+								/* $this->session->login($userResp['email']);
+								$this->session->isLoggedIn(true); */
+								//return $this->resultRedirectFactory->create()->setUrl('customer/account/edit');
 							
 						}
 					}
